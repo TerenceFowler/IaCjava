@@ -50,9 +50,35 @@ public class FirstImport
                                 }
                                 if(line.contains("instance_type"))
                                 {
-                                    StringTokenizer stk = new StringTokenizer(line, "\"");
+                                    type = line;
+                                    
+                                    StringTokenizer stk = new StringTokenizer(type, "\"");
                                     stk.nextToken();
                                     type = stk.nextToken();
+                                    
+                                    System.out.println("type string .." + type);
+                                    switch (type)
+                                    {
+
+                                        case "t2.micro" :
+                                        type = "Micro";
+                                        break;
+
+                                        case "t2.small" :
+                                        type = "Small";
+                                        break;
+
+                                        case "t2.medium":
+                                        type = "Medium";
+                                        break;
+
+                                        case "t2.large":
+                                        type = "Large";
+                                        break;
+
+
+                                    }
+                                    
                                     System.out.println("string tokenizer type" +type);
                                     output.add(new vm(name, type, false));
                                 }
