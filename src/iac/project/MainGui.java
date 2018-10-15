@@ -292,9 +292,15 @@ public class MainGui extends javax.swing.JFrame {
      */
     public static void main(String args[]) 
     {
-        runningVMs = new ArrayList<vm>();
+        
+        FirstImport importVMs = new FirstImport();
+        
+        runningVMs = importVMs.runImport();
         guiVars = new GuiVariables();
         builder = new CompileTBuild(); 
+        builder.recompile(runningVMs);
+        guiVars.redo(runningVMs);
+        
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -331,7 +337,7 @@ public class MainGui extends javax.swing.JFrame {
         
     }
     
- 
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
