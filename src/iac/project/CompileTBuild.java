@@ -1,7 +1,5 @@
 /*
- * To z this license header, choose License Headers in Project Properties.
- * To z this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This writes all the vm objects to the appropraite file for terraform to apply from
  */
 package iac.project;
 
@@ -19,18 +17,18 @@ import java.util.*;
 public class CompileTBuild 
 
 {
-    String pathToFile;
+    private final String pathToFile;
     
+    //initiator
     CompileTBuild()
     {
-        pathToFile = "/Users/terencefowler/Documents/terraformPoject/tfBuild.tf";
+        PathToTerraform path = new PathToTerraform();
+        pathToFile = path.toString();
     }
     
+    //recompile creates an output file for terraform
     public void recompile(ArrayList<vm> vms)
     {
-        
-        String fileBody="";
-        
         //compile the file body together
         String header = "provider \"aws\" {\n" +
                         "  access_key = \"${var.access_key}\"\n" +
@@ -43,11 +41,11 @@ public class CompileTBuild
         
        for(int i=0; i<vms.size();i++)
        {
-           resources = resources + vms.get(i).printResource();
-           System.out.println(vms.get(i).printResource());
+           resources = resources + vms.get(i).toString();
+           System.out.println(vms.get(i).toString());
        }
         
-       fileBody = header + resources;
+       String fileBody = header + resources;
         
         //rewrite the file
         File writeFile = new File(pathToFile);
@@ -55,7 +53,7 @@ public class CompileTBuild
        
         try {
             
-            fr = new FileWriter(writeFile, false); // false to overwrite.
+            fr = new FileWriter(writeFile, false); // false to overwrite file
             fr.write(fileBody);
             fr.close();
         
@@ -63,8 +61,4 @@ public class CompileTBuild
             Logger.getLogger(CompileTBuild.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
 }
