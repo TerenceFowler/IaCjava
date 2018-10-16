@@ -1,24 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Main static method for java
+ * This also contains the GUI
  */
 package iac.project;
 
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 /**
  *
  * @author terencefowler
  */
 public class MainGui extends javax.swing.JFrame {
-
-    
+//Main vars
     private static ArrayList<vm> runningVMs; 
     private static GuiVariables guiVars;
     private static CompileTBuild builder;
@@ -30,8 +24,6 @@ public class MainGui extends javax.swing.JFrame {
     public MainGui() {
         
         initComponents();
-        
-        
     }
 
     /**
@@ -229,16 +221,16 @@ public class MainGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        // create a vm based on the values
+        // Stage a vm for creation
         
-        
+        //Make sure user isnt passing an empty/default value
         if(jTextField1.getText().equals("<vm name>"))
         {
             JOptionPane.showMessageDialog(null,"Please enter a name for the VM");
         }
         else
         {
+            //Check to make sure the vm name does not already exist and remove spaces
             boolean repeat=false; 
             for (int i = 0; i < runningVMs.size(); i++)
                     {
@@ -255,21 +247,17 @@ public class MainGui extends javax.swing.JFrame {
             {
                 //all is well create a new vm and add it to runningVMs
                 System.out.println("new vm name type: "+jComboBox1.getSelectedItem().toString());
+                
+                //Create vm and add to list
                 vm newVM = new vm(jTextField1.getText().replaceAll("\\s+",""), jComboBox1.getSelectedItem().toString(), false);
                 runningVMs.add(newVM);
+                
+                //Rewrite terraform file to stage vm and update gui
                 System.out.println("number of vms: "+runningVMs.size());
                 builder.recompile(runningVMs);
                 guiVars.redo(runningVMs);
-                
-                
-                
             }
-            
-            
-        }
-        
-        
-        
+        }    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -281,11 +269,11 @@ public class MainGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            
+        //Destroy all button
+        //Remove all vms and stage them for aws removall 
         runningVMs.clear();
         builder.recompile(runningVMs);
         guiVars.redo(runningVMs);
-       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -326,8 +314,7 @@ public class MainGui extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
-        
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -337,8 +324,6 @@ public class MainGui extends javax.swing.JFrame {
         
         
     }
-    
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

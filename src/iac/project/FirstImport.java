@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Here we import any vms already being controlled by terraform
  */
 package iac.project;
 
@@ -19,15 +17,15 @@ import java.util.StringTokenizer;
 public class FirstImport 
 {
     
-    private String pathToFile;
+    private final String pathToFile;
     
     FirstImport()
     {
-        pathToFile = "/Users/terencefowler/Documents/terraformPoject/tfBuild.tf";
+        PathToTerraform path = new PathToTerraform();
+        pathToFile = path.toString();
     }
     
-   
-        public ArrayList runImport()      
+    public ArrayList runImport()      
     {
         BufferedReader br;
         String line;
@@ -99,8 +97,6 @@ public class FirstImport
 		// ..... END Buffered Reader ...... 
     
         return output;
-        
- 
-    
+
     
 }}

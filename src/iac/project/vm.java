@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This is a vm object and contains all the elements that will 
+ * eventually be passed to terraform
  */
 package iac.project;
 
@@ -16,7 +15,7 @@ public class vm
     private String user_data;
     private boolean built;
     
-    
+    //create default vm for testing
     vm()
     {
         built = false;
@@ -26,6 +25,7 @@ public class vm
         System.out.println("vm created with default method... not advised...");
     }
     
+    //create vm
     vm(String nameStr, String typeStr, boolean isBuilt)
     {
         built = isBuilt;
@@ -55,11 +55,11 @@ public class vm
             user_data="${file(\"largeServer.sh\")}";
             break;
             
-            
         }
     }
         
-    public String printResource()
+    @Override
+    public String toString()
     {
         String str=
                 "resource \"aws_instance\" \""+ name +"\" {\n" +

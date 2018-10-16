@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This method updates the GUI variable and outputs them in the correct format
  */
 package iac.project;
 import java.util.*;
@@ -19,7 +17,6 @@ public class GuiVariables
     GuiVariables()
     {
         names = new DefaultListModel();
-        
     }
     
     public void redo(ArrayList<vm> list)
@@ -33,10 +30,6 @@ public class GuiVariables
                     names.addElement(list.get(i).getNameType());
                     System.out.println("redo wrote a value");
                 }
-        
-        
-        
-        
     }
     
 }
