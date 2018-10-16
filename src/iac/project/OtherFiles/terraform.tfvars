@@ -1,2 +1,2 @@
 access_key = "------xxxxx------"
-secret_key = "-----xxxx------""
+secret_key = "-----xxxx------"
