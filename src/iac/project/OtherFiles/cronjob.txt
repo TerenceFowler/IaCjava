@@ -1,0 +1,1 @@
+*/3 * * * * bash /Users/terencefowler/Documents/terraformPoject/runme.sh

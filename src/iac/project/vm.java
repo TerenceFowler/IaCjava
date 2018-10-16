@@ -13,6 +13,7 @@ public class vm
     private String instance_type;
     private String name;
     private String user_data;
+    private String security_groups;
     private boolean built;
     
     //create default vm for testing
@@ -21,16 +22,18 @@ public class vm
         built = false;
         instance_type = "t2.micro";
         name = "micro";
+        security_groups = "MainWebPage";
         user_data="${file(\"miniServer.sh\")}";
         System.out.println("vm created with default method... not advised...");
     }
     
     //create vm
-    vm(String nameStr, String typeStr, boolean isBuilt)
+    vm(String nameStr, String typeStr, String securityGrp,boolean isBuilt)
     {
         built = isBuilt;
         System.out.println("vm building..."+nameStr+" "+ typeStr);
         name = nameStr;
+        security_groups = securityGrp;
         
         switch (typeStr)
         {
@@ -65,7 +68,7 @@ public class vm
                 "resource \"aws_instance\" \""+ name +"\" {\n" +
                 "  ami = \"ami-a0cfeed8\"\n" +
                 "  instance_type = \"" + instance_type +"\"\n" +
-                "  security_groups = [\"MainWebPage\"]\n" +
+                "  security_groups = [\""+security_groups+"\"]\n" +
                 "  key_name = \"IaC-security\"\n" +
                 "  user_data=\""+user_data+"\"\n" +
                 " }\n";

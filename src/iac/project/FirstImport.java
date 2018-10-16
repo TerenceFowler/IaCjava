@@ -29,7 +29,7 @@ public class FirstImport
     {
         BufferedReader br;
         String line;
-        String type="",name="";
+        String type="",name="",securityGrp="";
         ArrayList output = new ArrayList<vm>();
         
 
@@ -46,6 +46,9 @@ public class FirstImport
                                     name = stk.nextToken();
                                     System.out.println("string tokenizer name" +name);
                                 }
+                                
+                                
+                                
                                 if(line.contains("instance_type"))
                                 {
                                     type = line;
@@ -77,10 +80,22 @@ public class FirstImport
 
                                     }
                                     
+                                    
                                     System.out.println("string tokenizer type" +type);
-                                    output.add(new vm(name, type, false));
+                                    
+                                }
+                                
+                                if(line.contains("security_groups"))
+                                {
+                                    securityGrp = line;
+                                    
+                                    StringTokenizer stk = new StringTokenizer(securityGrp, "\"");
+                                    stk.nextToken();
+                                    securityGrp = stk.nextToken();
+                                    output.add(new vm(name, type, securityGrp,false));
                                 }
 
+                            
 			}//end while
 			br.close();//end of buffer reader
 
