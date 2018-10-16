@@ -16,6 +16,7 @@ public class vm
     private String security_groups;
     private boolean built;
     
+    
     //create default vm for testing
     vm()
     {
@@ -25,6 +26,7 @@ public class vm
         security_groups = "MainWebPage";
         user_data="${file(\"miniServer.sh\")}";
         System.out.println("vm created with default method... not advised...");
+        
     }
     
     //create vm
@@ -63,7 +65,7 @@ public class vm
         
     @Override
     public String toString()
-    {
+    { 
         String str=
                 "resource \"aws_instance\" \""+ name +"\" {\n" +
                 "  ami = \"ami-a0cfeed8\"\n" +

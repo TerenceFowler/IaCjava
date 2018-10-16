@@ -29,7 +29,7 @@ public class FirstImport
     {
         BufferedReader br;
         String line;
-        String type="",name="",securityGrp="";
+        String type="",name="",securityGrp="", ebsSize="";
         ArrayList output = new ArrayList<vm>();
         
 
@@ -94,6 +94,7 @@ public class FirstImport
                                     securityGrp = stk.nextToken();
                                     output.add(new vm(name, type, securityGrp,false));
                                 }
+                               
 
                             
 			}//end while
